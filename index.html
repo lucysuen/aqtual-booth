@@ -537,15 +537,20 @@
   }
 
   function sendToScript(payload) {
-    // Encode payload as URL parameter and use GET request via Image tag
-    // This bypasses CORS entirely as image requests have no CORS restrictions
+    // Use fetch with no-cors — Apps Script URL already handles redirects
     var encoded = encodeURIComponent(JSON.stringify(payload));
     var url = APPS_SCRIPT_URL + '?data=' + encoded;
-    var img = new Image();
-    img.src = url;
-    img.onerror = img.onload = function() {
-      console.log('Script ping sent');
-    };
+    console.log('Sending to:', url.substring(0, 80) + '...');
+    fetch(url, {
+      method: 'GET',
+      mode: 'no-cors',
+      redirect: 'follow'
+    }).then(function() {
+      console.log('Sent successfully');
+    }).catch(function(err) {
+      console.warn('Send error:', err);
+      queuePayload(payload);
+    });
   }
 
   function retryQueue() {
@@ -615,15 +620,20 @@
   }
 
   function sendToScript(payload) {
-    // Encode payload as URL parameter and use GET request via Image tag
-    // This bypasses CORS entirely as image requests have no CORS restrictions
+    // Use fetch with no-cors — Apps Script URL already handles redirects
     var encoded = encodeURIComponent(JSON.stringify(payload));
     var url = APPS_SCRIPT_URL + '?data=' + encoded;
-    var img = new Image();
-    img.src = url;
-    img.onerror = img.onload = function() {
-      console.log('Script ping sent');
-    };
+    console.log('Sending to:', url.substring(0, 80) + '...');
+    fetch(url, {
+      method: 'GET',
+      mode: 'no-cors',
+      redirect: 'follow'
+    }).then(function() {
+      console.log('Sent successfully');
+    }).catch(function(err) {
+      console.warn('Send error:', err);
+      queuePayload(payload);
+    });
   }
 
   function retryQueue() {
@@ -741,15 +751,20 @@
   }
 
   function sendToScript(payload) {
-    // Encode payload as URL parameter and use GET request via Image tag
-    // This bypasses CORS entirely as image requests have no CORS restrictions
+    // Use fetch with no-cors — Apps Script URL already handles redirects
     var encoded = encodeURIComponent(JSON.stringify(payload));
     var url = APPS_SCRIPT_URL + '?data=' + encoded;
-    var img = new Image();
-    img.src = url;
-    img.onerror = img.onload = function() {
-      console.log('Script ping sent');
-    };
+    console.log('Sending to:', url.substring(0, 80) + '...');
+    fetch(url, {
+      method: 'GET',
+      mode: 'no-cors',
+      redirect: 'follow'
+    }).then(function() {
+      console.log('Sent successfully');
+    }).catch(function(err) {
+      console.warn('Send error:', err);
+      queuePayload(payload);
+    });
   }
 
   function retryQueue() {
@@ -883,15 +898,20 @@
   }
 
   function sendToScript(payload) {
-    // Encode payload as URL parameter and use GET request via Image tag
-    // This bypasses CORS entirely as image requests have no CORS restrictions
+    // Use fetch with no-cors — Apps Script URL already handles redirects
     var encoded = encodeURIComponent(JSON.stringify(payload));
     var url = APPS_SCRIPT_URL + '?data=' + encoded;
-    var img = new Image();
-    img.src = url;
-    img.onerror = img.onload = function() {
-      console.log('Script ping sent');
-    };
+    console.log('Sending to:', url.substring(0, 80) + '...');
+    fetch(url, {
+      method: 'GET',
+      mode: 'no-cors',
+      redirect: 'follow'
+    }).then(function() {
+      console.log('Sent successfully');
+    }).catch(function(err) {
+      console.warn('Send error:', err);
+      queuePayload(payload);
+    });
   }
 
   function retryQueue() {

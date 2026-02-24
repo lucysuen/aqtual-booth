@@ -549,8 +549,10 @@
     leads.push(payload);
     localStorage.setItem('aqtual_leads', JSON.stringify(leads));
     if (APPS_SCRIPT_URL !== 'https://script.google.com/macros/s/AKfycbyXtyxkiBqAk521QPtMeA32rTfWgI7EcQEbf7Vlmdidl0vySn7nTpnpHrUBk5G1auY/exec') {
-      fetch(APPS_SCRIPT_URL, { method:'POST', mode:'no-cors', body: JSON.stringify(payload) })
-        .catch(err => console.warn('Apps Script error:', err));
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', APPS_SCRIPT_URL, true);
+      xhr.setRequestHeader('Content-Type', 'text/plain;charset=UTF-8');
+      xhr.send(JSON.stringify(payload));
     }
     const t = document.getElementById('toast');
     t.textContent = `✓ Sent to ${email}`;

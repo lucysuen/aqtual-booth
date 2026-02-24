@@ -549,10 +549,19 @@
     leads.push(payload);
     localStorage.setItem('aqtual_leads', JSON.stringify(leads));
     if (APPS_SCRIPT_URL !== 'https://script.google.com/macros/s/AKfycbyXtyxkiBqAk521QPtMeA32rTfWgI7EcQEbf7Vlmdidl0vySn7nTpnpHrUBk5G1auY/exec') {
-      var xhr = new XMLHttpRequest();
-      xhr.open('POST', APPS_SCRIPT_URL, true);
-      xhr.setRequestHeader('Content-Type', 'text/plain;charset=UTF-8');
-      xhr.send(JSON.stringify(payload));
+      // Submit via hidden form to bypass CORS
+      var form = document.createElement('form');
+      form.method = 'POST';
+      form.action = APPS_SCRIPT_URL;
+      form.target = 'hidden_iframe';
+      var input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = 'data';
+      input.value = JSON.stringify(payload);
+      form.appendChild(input);
+      document.body.appendChild(form);
+      form.submit();
+      document.body.removeChild(form);
     }
     const t = document.getElementById('toast');
     t.textContent = `✓ Sent to ${email}`;
@@ -636,5 +645,6 @@
 
   renderPubs();
 </script>
+<iframe name="hidden_iframe" style="display:none;"></iframe>
 </body>
 </html>
